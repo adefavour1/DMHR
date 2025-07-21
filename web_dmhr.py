@@ -4,24 +4,24 @@ import plotly.express as px
 from datetime import datetime
 
 # === Optional: Password Protection Using secrets.toml ===
-if "authenticated" not in st.session_state:
-    st.session_state["authenticated"] = False
+#if "authenticated" not in st.session_state:
+ #   st.session_state["authenticated"] = False
 
-if not st.session_state["authenticated"]:
-    try:
-        PASSWORD = st.secrets["auth"]["password"]
-    except KeyError:
-        st.error("Password not set. Please configure secrets.")
-        st.stop()
+#if not st.session_state["authenticated"]:
+ #   try:
+ #       PASSWORD = st.secrets["auth"]["password"]
+  #  except KeyError:
+   #     st.error("Password not set. Please configure secrets.")
+    #    st.stop()
 
-    password_input = st.text_input("\U0001f510 Enter access password:", type="password")
-    if password_input == PASSWORD:
-        st.session_state["authenticated"] = True
-        st.success("Access granted. Welcome!")
-        st.rerun()
-    else:
-        st.warning("Please enter the correct password to access the app.")
-        st.stop()
+    #password_input = st.text_input("\U0001f510 Enter access password:", type="password")
+    #if password_input == PASSWORD:
+     #   st.session_state["authenticated"] = True
+       # st.success("Access granted. Welcome!")
+        #st.rerun()
+    #else:
+     #   st.warning("Please enter the correct password to access the app.")
+       # st.stop()
 
 # === Fixed Light Theme ===
 background_color = "#87CEEB"
