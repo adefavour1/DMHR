@@ -104,13 +104,13 @@ if compare_mode:
         with st.expander(f"\U0001f527 Machine {i+1} Inputs", expanded=(i == 0)):
             st.markdown("### \U0001f3d7\ufe0f Fixed Costs")
             Pm = st.number_input("**Purchase Cost (₦)**", key=f"Pm_{i}", min_value=0.0)
-            Ls = st.number_input("**Life Span (hours)**", key=f"Ls_{i}", min_value=0.0)
+            Ls = st.number_input("**Life Span (hours)**", key=f"Ls_{i}", min_value=1.0)
             inflation_rate = st.number_input("**Inflation Rate (e.g. 0.05)**", key=f"inf_{i}", min_value=0.0, max_value=1.0)
             insurance_rate = st.number_input("**Insurance Rate (e.g. 0.02)**", key=f"ins_{i}", min_value=0.0, max_value=1.0)
             am = st.number_input("**Area Occupied (m²)**", key=f"am_{i}", min_value=0.0)
             Af = st.number_input("**Total Factory Area (m²)**", key=f"Af_{i}", min_value=0.0)
             Cb = st.number_input("**Building Cost/Rent (₦)**", key=f"Cb_{i}", min_value=0.0)
-            Hf = st.number_input("**Hours Used**", key=f"Hf_{i}", min_value=0.0)
+            Hf = st.number_input("**Hours Used**", key=f"Hf_{i}", min_value=1.0)
             Oc = st.number_input("**Overhead Cost (₦)**", key=f"Oc_{i}", min_value=0.0)
             tax_env_cost = st.number_input("**Tax & Environmental Cost (₦)**", key=f"tax_{i}", min_value=0.0)
 
@@ -162,13 +162,13 @@ else:
     with st.form(key="unique_single_form"):
         st.markdown("### \U0001f3d7\ufe0f Fixed Cost Inputs")
         Pm = st.number_input("**Machine purchase cost (₦)**", min_value=0.0)
-        Ls = st.number_input("**Machine life span (hours)**", min_value=0.0)
+        Ls = st.number_input("**Machine life span (hours)**", min_value=1.0)
         inflation_rate = st.number_input("**Inflation rate (e.g. 0.05 for 5%)**", min_value=0.0, max_value=1.0)
         insurance_rate = st.number_input("**Insurance rate (e.g. 0.02 for 2%)**", min_value=0.0, max_value=1.0)
         am = st.number_input("**Area occupied by machine (m²)**", min_value=0.0)
         Af = st.number_input("**Total factory area (m²)**", min_value=0.0)
         Cb = st.number_input("**Building cost or rent (₦)**", min_value=0.0)
-        Hf = st.number_input("**Machine hours used (hours)**", min_value=0.0)
+        Hf = st.number_input("**Machine hours used (hours)**", min_value=1.0)
         Oc = st.number_input("**Total overhead cost (₦)**", min_value=0.0)
         tax_env_cost = st.number_input("**Tax & environmental cost (₦)**", min_value=0.0)
 
