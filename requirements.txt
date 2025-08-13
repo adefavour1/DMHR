@@ -3,5 +3,3 @@ streamlit
 pandas
 plotly
 openpyxl
-xlsxwriter
-
