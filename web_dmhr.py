@@ -58,8 +58,8 @@ def export_to_excel_with_charts(inputs_dict, results_df, project_name="DMHR_Proj
     param_labels = {
         "Pm": "Machine Purchase Cost (₦)",
         "Ls": "Machine Life Span (hours)",
-        "inflation_rate": "Inflation Rate (e.g. 0.05)",
-        "insurance_rate": "Insurance Rate (e.g. 0.02)",
+        "inflation_rate": "Inflation Rate",
+        "insurance_rate": "Insurance Rate",
         "am": "Area Occupied by Machine (m²)",
         "Af": "Total Factory Area (m²)",
         "Cb": "Building Cost or Rent (₦)",
