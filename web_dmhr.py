@@ -127,8 +127,6 @@ if compare_mode:
         fig_dmhr = px.line(results_df, x="Machine", y="DMHR (₦/hr)", markers=True)
 
         buf_bar, buf_dmhr = io.BytesIO(), io.BytesIO()
-        fig_bar.write_image(buf_bar, format="png")
-        fig_dmhr.write_image(buf_dmhr, format="png")
         charts.append(("Cost Breakdown", buf_bar))
         charts.append(("DMHR Trend", buf_dmhr))
 
@@ -183,8 +181,6 @@ else:
         fig_pie = px.pie(results_df.melt(var_name="Type", value_name="Amount"), names="Type", values="Amount")
 
         buf_bar, buf_pie = io.BytesIO(), io.BytesIO()
-        fig_bar.write_image(buf_bar, format="png")
-        fig_pie.write_image(buf_pie, format="png")
         charts = [("Cost Breakdown", buf_bar), ("Cost Share", buf_pie)]
 
         excel_file = export_to_excel_with_charts(inputs_df, results_df, charts, project_name or "DMHR_Project")
