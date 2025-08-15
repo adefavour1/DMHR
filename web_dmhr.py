@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import numpy as np
 from datetime import datetime
 
 # === Fixed Light Theme ===
@@ -51,7 +52,7 @@ def calculate_variable_costs(Pt_m, Rt, Sm, Um, labour_rate, Hf):
 def calculate_dmhr(FC, VC, Hf):
     return (FC + VC) / Hf
 
-# === Excel Export with Descriptive Names ===
+# === Excel Export with Charts ===
 def export_to_excel_with_charts(inputs_dict, results_df, project_name="DMHR_Project"):
     import xlsxwriter
 
@@ -151,7 +152,7 @@ if submitted:
     col2.metric("🛠️ Variable Costs (₦)", f"{VC:,.2f}")
     col3.metric("📊 DMHR (₦/hr)", f"{DMHR:,.2f}")
 
-    # Display charts in Streamlit
+    # Bar Chart
     cost_data = pd.DataFrame({
         "Cost Type": ["Fixed Costs", "Variable Costs"],
         "Amount": [FC, VC]
@@ -159,12 +160,28 @@ if submitted:
     st.subheader("📊 Cost Breakdown (Bar Chart)")
     st.bar_chart(cost_data.set_index("Cost Type"))
 
+    # Pie Chart
     pie_data = pd.DataFrame({
         'Cost Type': ['Fixed Costs', 'Variable Costs'],
         'Amount': [FC, VC]
     })
     st.subheader("🥧 Cost Breakdown (Pie Chart)")
     st.plotly_chart(px.pie(pie_data, values='Amount', names='Cost Type', title='Fixed vs Variable Cost Share'), use_container_width=True)
+
+    # Single Machine Line Chart (Deep Red)
+    hours = np.linspace(1, Hf, int(Hf))
+    cumulative_cost = (FC + VC) * (hours / Hf)
+    df_line = pd.DataFrame({"Hours Used": hours, "Cumulative Cost (₦)": cumulative_cost})
+
+    fig_line_single = px.line(
+        df_line,
+        x="Hours Used",
+        y="Cumulative Cost (₦)",
+        title="Cumulative Cost Over Machine Usage Time",
+        markers=True
+    )
+    fig_line_single.update_traces(line=dict(color="#d62728", width=3))
+    st.plotly_chart(fig_line_single, use_container_width=True)
 
     # Prepare data for Excel export
     inputs_dict = {
